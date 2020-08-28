@@ -1,0 +1,27 @@
+{% ckan_extends %}
+
+{% block secondary_content %}
+  {% resource 'ckanext-temporalsearch/moment.js' %}
+  {% resource 'ckanext-temporalsearch/daterangepicker.js' %}
+  {% resource 'ckanext-temporalsearch/daterangepicker-bs3.css' %}
+  {% resource 'ckanext-temporalsearch/daterangepicker-module.js' %}
+
+  {# This <section> is the date-range picker widget in the sidebar. #}
+  <section class="module module-narrow module-shallow">
+    <h2 class="module-heading">
+	<div>
+      <i class="icon-medium icon-calendar"></i> {{ _('Gültigkeitszeitraum') }}
+	  <img src="https://catalog.gis.lrg.tum.de/base/images/custom/questionmark.png" style="display:inline-block" title="Hiermit kann nach dem Gültigkeitszeitraum von Datensätzen gesucht werden. Damit ist nicht das Datum gemeint an dem ein Eintrag erstellt worden ist, sondern die optional angegebene Zeitspanne, innerhalb der ein Datensatz gültig ist."/>
+      <a href="{{ h.remove_url_param(['ext_startdate', 'ext_enddate']) }}"
+        class="action">{{ _('Löschen') }}</a>
+	</div>
+    </h2>
+    <div class="module-content input-prepend" data-module="daterange-query">
+      <span class="add-on"><i class="icon-calendar"></i></span>
+      <input type="text" style="width: 150px" id="daterange"
+             data-module="daterangepicker-module" />
+    </div>
+  </section>
+
+  {{ super() }}
+{% endblock %}
